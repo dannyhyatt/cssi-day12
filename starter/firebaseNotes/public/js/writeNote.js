@@ -11,10 +11,9 @@ window.onload = (event) => {
     }
   });
 };
-
 const handleNoteSubmit = () => {
-    console.log("note submission function called");
-    // 1. Capture the form data
-    // 2. Format the data and write it to our database
-    // 3. Clear the form so that we can write a new note
-}
+    firebase.database().ref(googleUser.uid).push({
+        title: document.querySelector('#noteTitle').value,
+        text: document.querySelector('#noteText').value,
+  }).then((_) => console.log('success')).catch(e => console.log(e));
+};
